@@ -285,7 +285,19 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                 }
                 
                 context.setFillColor(dataSet.barShadowColor.cgColor)
-                context.fill(barRect)
+                
+                #if os(iOS)
+                    if dataProvider.barCornerRadius > 0 {
+                        let bezierPath = UIBezierPath(roundedRect: barRect, cornerRadius: dataProvider.barCornerRadius)
+                        context.addPath(bezierPath.cgPath)
+                        
+                        context.drawPath(using: .fill)
+                    } else {
+                        context.fill(barRect)
+                    }
+                #else
+                    context.fill(barRect)
+                #endif
             }
         }
         
@@ -315,9 +327,18 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                 // Set the color for the currently drawn value. If the index is out of bounds, reuse colors.
                 context.setFillColor(dataSet.color(atIndex: j).cgColor)
             }
-            
-            context.fill(barRect)
-            
+            #if os(iOS)
+                if dataProvider.barCornerRadius > 0 {
+                    let bezierPath = UIBezierPath(roundedRect: barRect, cornerRadius: dataProvider.barCornerRadius)
+                    context.addPath(bezierPath.cgPath)
+                    
+                    context.drawPath(using: .fill)
+                } else {
+                    context.fill(barRect)
+                }
+            #else
+                context.fill(barRect)
+            #endif
             if drawBorder
             {
                 context.setStrokeColor(borderColor.cgColor)
@@ -685,7 +706,18 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                 
                 setHighlightDrawPos(highlight: high, barRect: barRect)
                 
-                context.fill(barRect)
+                #if os(iOS)
+                    if dataProvider.barCornerRadius > 0 {
+                        let bezierPath = UIBezierPath(roundedRect: barRect, cornerRadius: dataProvider.barCornerRadius)
+                        context.addPath(bezierPath.cgPath)
+                        
+                        context.drawPath(using: .fill)
+                    } else {
+                        context.fill(barRect)
+                    }
+                #else
+                    context.fill(barRect)
+                #endif
             }
         }
         

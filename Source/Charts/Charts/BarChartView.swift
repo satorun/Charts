@@ -180,4 +180,7 @@ open class BarChartView: BarLineChartViewBase, BarChartDataProvider
     
     /// - returns: `true` if drawing shadows (maxvalue) for each bar is enabled, `false` ifnot
     open var isDrawBarShadowEnabled: Bool { return drawBarShadowEnabled }
+    
+    /// - returns: 0 if barCornerRadius > 0, each bar is drawed with rounded
+    open var barCornerRadius: CGFloat = 0.0
 }
