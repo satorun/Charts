@@ -52,6 +52,8 @@
     _chartView.drawBarShadowEnabled = NO;
     _chartView.drawValueAboveBarEnabled = YES;
     
+    _chartView.barCornerRadius = 10.0;
+    
     _chartView.maxVisibleCount = 60;
     
     ChartXAxis *xAxis = _chartView.xAxis;

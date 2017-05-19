@@ -222,4 +222,7 @@ open class CombinedChartView: BarLineChartViewBase, CombinedChartDataProvider
     
     /// - returns: `true` the highlight is be full-bar oriented, `false` ifsingle-value
     open var isHighlightFullBarEnabled: Bool { return highlightFullBarEnabled }
+    
+    /// - returns: 0 if barCornerRadius > 0, each bar is drawed with rounded
+    open var barCornerRadius: CGFloat = 0.0
 }
